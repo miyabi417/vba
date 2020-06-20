@@ -1,0 +1,33 @@
+Option Explicit
+
+Function warekihenkan(西暦 As Date) As Variant
+    ' 西暦のセルを「元号コード + eemmdd」に変換する
+    ' 明治 18680125 ～ 19120729
+    ' 大正 19120730 ～ 19261225
+    ' 昭和 19261225 ～ 19890107
+    ' 平成 19890108 ～ 20190430
+    ' 令和 20190501 ～ 99999999
+
+    Dim 日付 As Long
+    日付 = Format(西暦, "yyyymmdd")
+    'Debug.Print "西暦" & 西暦
+    'Debug.Print "日付" & 日付
+    If 日付 < 18680125 Then
+        warekihenkan = "江戸時代"
+            ElseIf 日付 < 19120730 Then
+                ' 明治 = 1
+                warekihenkan = 1 & Format(日付 - 18670000, "000000")
+                    ElseIf 日付 < 19261225 Then
+                        ' 大正 = 2
+                        warekihenkan = 2 & Format(日付 - 19110000, "000000")
+                            ElseIf 日付 < 19890108 Then
+                                ' 昭和 = 3
+                                warekihenkan = 3 & Format(日付 - 19250000, "000000")
+                                    ElseIf 日付 < 20190501 Then
+                                        ' 平成 = 4
+                                        warekihenkan = 4 & Format(日付 - 19880000, "000000")
+                                    Else
+                                        ' 令和 = 5
+                                        warekihenkan = 5 & Format(日付 - 20180000, "000000")
+    End If
+End Function
